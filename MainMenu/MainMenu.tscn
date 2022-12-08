@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://MainMenu/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Fonts/PoetsenOne-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+_levelSceneFile = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.160784, 0.160784, 0.184314, 1 )
+
+[node name="UI" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="CenterContainer" parent="UI"]
+margin_right = 1280.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 0, 360 )
+
+[node name="Label" type="Label" parent="UI/Title"]
+margin_left = 466.0
+margin_top = 103.0
+margin_right = 813.0
+margin_bottom = 257.0
+custom_fonts/font = SubResource( 1 )
+text = "Pong!"
+
+[node name="Buttons" type="VBoxContainer" parent="UI"]
+margin_top = 364.0
+margin_right = 1280.0
+margin_bottom = 724.0
+rect_min_size = Vector2( 0, 360 )
+custom_constants/separation = 24
+
+[node name="OnePlayerButton" type="Button" parent="UI/Buttons"]
+margin_right = 1280.0
+margin_bottom = 45.0
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.709804, 0.584314, 0.133333, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "One Player"
+flat = true
+
+[node name="TwoPlayerButton" type="Button" parent="UI/Buttons"]
+margin_top = 69.0
+margin_right = 1280.0
+margin_bottom = 114.0
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.709804, 0.584314, 0.133333, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Two Player"
+flat = true
+
+[node name="QuitButton" type="Button" parent="UI/Buttons"]
+margin_top = 138.0
+margin_right = 1280.0
+margin_bottom = 183.0
+focus_mode = 0
+custom_colors/font_color_hover = Color( 0.709804, 0.584314, 0.133333, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Quit"
+flat = true
+
+[connection signal="button_up" from="UI/Buttons/OnePlayerButton" to="." method="OnOnePlayerButtonUp"]
+[connection signal="button_up" from="UI/Buttons/TwoPlayerButton" to="." method="OnTwoPlayerButtonUp"]
+[connection signal="button_up" from="UI/Buttons/QuitButton" to="." method="OnQuitButtonUp"]
